@@ -125,7 +125,7 @@ for word in givenWords:
     if counter % 100 == 0:
         print(f'{counter} {"▮" * int(str((counter / len(givenWords)) * 100)[:1])}{"▯" * (10 - int(str((counter / len(givenWords)) * 100)[:1]))} {str((counter / len(givenWords)) * 100)[:5]}% {word}')
     if counter == len(givenWords):
-        print(f'{counter} "▮▮▮▮▮▮▮▮▮▮ 100%')
+        print(f'{counter} ▮▮▮▮▮▮▮▮▮▮ 100%')
     counter += 1
 
 with open('original_list.txt', 'w', encoding='UTF-8') as file:
@@ -152,6 +152,6 @@ print(f'Original length: {len(original_list)}')
 
 print(f'Swear: {len(changed_list)}')
 
-print(f'Swear_%: {len(changed_list) / len(original_list)}')
+print(f'Swear_%: {len(changed_list) / len(original_list) * 100} %')
 
 print(f'Spam: {len(spam)}')
