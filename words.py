@@ -125,7 +125,7 @@ for word in givenWords:
     if counter % 100 == 0:
         print(f'{counter} {"▮" * int(str((counter / len(givenWords)) * 100)[:1])}{"▯" * (10 - int(str((counter / len(givenWords)) * 100)[:1]))} {str((counter / len(givenWords)) * 100)[:5]}% {word}')
     if counter == len(givenWords):
-        print(f'{counter} "▮▮▮▮▮▮▮▮▮▮ 100%')
+        print(f'{counter} ▮▮▮▮▮▮▮▮▮▮ 100%')
     counter += 1
 
 with open('original_list.txt', 'w', encoding='UTF-8') as file:
