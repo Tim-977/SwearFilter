@@ -1,4 +1,5 @@
 import json
+import time
 
 with open('valuedWords.txt', 'r', encoding='UTF-8') as f:
     valuedWords = f.readlines()
@@ -110,20 +111,28 @@ def correct_spelling(word, valued_words):
             return handled_closest, 0
         return handled_word, 1
 
+
 changed_list = []
 original_list = []
 
 counter = 1
+flag = True
 
 for word in givenWords:
+    if flag:
+        start_time = time.time()
+        flag = False
+
     temp = correct_spelling(word, valuedWords)
+
     if temp[1] or word in good_words:
         original_list.append(temp[0])
     else:
         changed_list.append(temp[0])
-    
+
     if counter % 100 == 0:
-        print(f'{counter} {"▮" * int(str((counter / len(givenWords)) * 100)[:1])}{"▯" * (10 - int(str((counter / len(givenWords)) * 100)[:1]))} {str((counter / len(givenWords)) * 100)[:5]}% {word}')
+        print(f'{counter} {"▮" * int(str((counter / len(givenWords)) * 100)[:1])}{"▯" * (10 - int(str((counter / len(givenWords)) * 100)[:1]))} {str((counter / len(givenWords)) * 100)[:5]}% {str((time.time() - start_time) * 1000)[:6]} ms')
+        flag = True
     if counter == len(givenWords):
         print(f'{counter} ▮▮▮▮▮▮▮▮▮▮ 100%')
     counter += 1
@@ -152,6 +161,6 @@ print(f'Original length: {len(original_list)}')
 
 print(f'Swear: {len(changed_list)}')
 
-print(f'Swear_%: {len(changed_list) / len(original_list)}')
+print(f'Swear_%: {len(changed_list) / len(original_list) * 100}')
 
 print(f'Spam: {len(spam)}')
